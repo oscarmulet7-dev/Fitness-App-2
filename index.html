@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Mi Plan de Fitness</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:rgba(0,0,0,0.06);touch-action:manipulation}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f2f2f7;color:#1a1a1a;font-size:15px;-webkit-text-size-adjust:100%}
+.app{max-width:480px;margin:0 auto;background:#f2f2f7;min-height:100vh;padding-bottom:72px}
+.topbar{background:#fff;border-bottom:1px solid #e0e0e0;padding:14px 16px;position:sticky;top:0;z-index:10}
+.topbar h1{font-size:18px;font-weight:700}
+.topbar p{font-size:12px;color:#888;margin-top:1px}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid #e0e0e0;display:flex;z-index:100}
+.bnav-btn{flex:1;padding:10px 2px 8px;border:none;background:none;font-size:9px;color:#999;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;min-height:52px;-webkit-appearance:none}
+.bnav-btn i{font-size:22px;line-height:1}
+.bnav-btn.active{color:#1a1a1a;font-weight:700}
+.bnav-btn.active i{color:#2563eb}
+.sec{display:none;padding:12px 14px 20px}
+.sec.active{display:block}
+.stitle{font-size:15px;font-weight:700;margin:14px 0 8px;color:#1a1a1a}
+.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.mc{background:#fff;border-radius:12px;padding:12px;text-align:center}
+.mc .lb{font-size:11px;color:#888;margin-bottom:3px}
+.mc .vl{font-size:20px;font-weight:700;color:#1a1a1a}
+.mc .un{font-size:11px;color:#888}
+.bw{margin-bottom:9px}
+.bl{display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:4px}
+.bt{height:6px;background:#eee;border-radius:3px;overflow:hidden}
+.bf{height:100%;border-radius:3px}
+.dn{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.dn::-webkit-scrollbar{display:none}
+.db{padding:7px 14px;font-size:13px;border-radius:99px;border:1.5px solid #ddd;background:#fff;color:#555;white-space:nowrap;cursor:pointer;font-weight:500;min-height:36px;-webkit-appearance:none}
+.db.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.mh .mt{font-size:14px;font-weight:700}
+.mh .mk{font-size:12px;color:#888;background:#f5f5f5;padding:3px 8px;border-radius:99px}
+.ri{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #f5f5f5;gap:8px}
+.ri:last-child{border-bottom:none}
+.ri .rd{color:#888;text-align:right;flex-shrink:0}
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.pill{font-size:10px;padding:2px 8px;border-radius:999px;font-weight:600}
+.pp{background:#dbeafe;color:#1e40af}
+.pc{background:#dcfce7;color:#166534}
+.pf{background:#fef3c7;color:#92400e}
+.rdc{background:#fff;border-radius:14px;padding:14px;margin-bottom:10px}
+.rdh{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.rdd{font-size:16px;font-weight:700}
+.rdb{font-size:11px;color:#1e40af;background:#dbeafe;padding:3px 10px;border-radius:99px;font-weight:600}
+.rds{font-size:12px;color:#888;margin-bottom:10px}
+.rdx{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f5f5;font-size:13px;gap:8px}
+.rdx:last-child{border-bottom:none}
+.rdx .en{font-weight:600;flex:1;color:#1a1a1a}
+.rdx .es{color:#888;font-size:12px;text-align:right;flex-shrink:0}
+.tip{background:#eff6ff;border-radius:10px;padding:11px 13px;font-size:13px;color:#1e3a5f;line-height:1.6;margin-top:10px;border-left:3px solid #2563eb;border-top-left-radius:0;border-bottom-left-radius:0}
+.fb{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.fb::-webkit-scrollbar{display:none}
+.fbtn{padding:7px 14px;font-size:12px;border-radius:99px;border:1.5px solid #ddd;background:#fff;color:#555;white-space:nowrap;cursor:pointer;font-weight:500;min-height:36px;-webkit-appearance:none}
+.fbtn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+.exc{background:#fff;border-radius:14px;padding:13px;margin-bottom:8px}
+.ext{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.exn{font-size:14px;font-weight:700;flex:1;color:#1a1a1a}
+.ebg{font-size:10px;padding:3px 9px;border-radius:99px;font-weight:600;flex-shrink:0}
+.ebf{background:#dbeafe;color:#1d4ed8}
+.ebi{background:#f3e8ff;color:#7e22ce}
+.exm{font-size:12px;color:#888;margin-top:3px}
+.exs{font-size:12px;color:#444;margin-top:6px;padding-top:6px;border-top:1px solid #f5f5f5}
+.exa{font-size:12px;color:#555;margin-top:4px}
+.exa b{color:#1a1a1a;font-weight:600}
+.fr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.fr label{font-size:13px;color:#666;width:85px;flex-shrink:0}
+.fr input{flex:1;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:16px;background:#fff;min-width:0;-webkit-appearance:none}
+.btn-add{width:100%;padding:13px;background:#1a1a1a;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-top:6px}
+.lr{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5}
+.lr:last-child{border-bottom:none}
+.ln{font-size:13px;font-weight:700;color:#1a1a1a}
+.ld{font-size:12px;color:#888;margin-top:1px}
+.dl{padding:8px;border:none;background:none;color:#ccc;font-size:20px;cursor:pointer;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center}
+.emp{text-align:center;padding:28px;color:#bbb;font-size:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.sp{background:#fff;border-radius:12px;padding:13px;margin-bottom:8px}
+.sp .spt{font-size:14px;font-weight:700;margin-bottom:4px;color:#1a1a1a}
+.sp .spb{font-size:13px;color:#555;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <h1>Mi Plan de Fitness</h1>
+    <p>28 años · 85 kg · Pérdida de grasa + Fuerza</p>
+  </div>
+
+  <!-- NUTRICIÓN -->
+  <div id="sec-nut" class="sec active">
+    <p class="stitle">Objetivos diarios</p>
+    <div class="g2">
+      <div class="mc"><div class="lb">Calorías</div><div class="vl">2.400</div><div class="un">kcal/día</div></div>
+      <div class="mc"><div class="lb">Proteína</div><div class="vl">180 g</div><div class="un">30%</div></div>
+      <div class="mc"><div class="lb">Carbohidratos</div><div class="vl">230 g</div><div class="un">38%</div></div>
+      <div class="mc"><div class="lb">Grasa</div><div class="vl">75 g</div><div class="un">28%</div></div>
+    </div>
+    <div class="bw"><div class="bl"><span>Proteína</span><span>30%</span></div><div class="bt"><div class="bf" style="width:30%;background:#2563eb"></div></div></div>
+    <div class="bw"><div class="bl"><span>Carbohidratos</span><span>38%</span></div><div class="bt"><div class="bf" style="width:38%;background:#16a34a"></div></div></div>
+    <div class="bw"><div class="bl"><span>Grasa</span><span>28%</span></div><div class="bt"><div class="bf" style="width:28%;background:#d97706"></div></div></div>
+    <p class="stitle">Plan de comidas</p>
+    <div class="dn" id="mdnav">
+      <button class="db active" data-m="0">Lun/Mié/Vie</button>
+      <button class="db" data-m="1">Mar/Jue</button>
+      <button class="db" data-m="2">Sáb/Dom</button>
+    </div>
+    <div id="m0">
+      <div class="card"><div class="mh"><span class="mt">Desayuno</span><span class="mk">~650 kcal</span></div><div class="ri"><span>Avena 80 g + leche 250 ml</span></div><div class="ri"><span>Huevos revueltos (3) + AOVE 5 ml</span></div><div class="ri"><span>Plátano</span></div><div class="pills"><span class="pill pp">P: 38g</span><span class="pill pc">C: 75g</span><span class="pill pf">G: 18g</span></div></div>
+      <div class="card"><div class="mh"><span class="mt">Comida</span><span class="mk">~900 kcal</span></div><div class="ri"><span>Pechuga pollo 200 g (plancha)</span></div><div class="ri"><span>Arroz blanco 200 g + brócoli 200 g</span></div><div class="ri"><span>Aguacate ½ + AOVE 10 ml</span></div><div class="pills"><span class="pill pp">P: 55g</span><span class="pill pc">C: 90g</span><span class="pill pf">G: 22g</span></div></div>
+      <div class="card"><div class="mh"><span class="mt">Cena</span><span class="mk">~850 kcal</span></div><div class="ri"><span>Salmón 200 g (horno)</span></div><div class="ri"><span>Patata cocida 200 g + espinacas 150 g</span></div><div class="ri"><span>Yogur griego 150 g</span></div><div class="pills"><span class="pill pp">P: 58g</span><span class="pill pc">C: 55g</span><span class="pill pf">G: 30g</span></div></div>
+    </div>
+    <div id="m1" style="display:none">
+      <div class="card"><div class="mh"><span class="mt">Desayuno</span><span class="mk">~620 kcal</span></div><div class="ri"><span>Pan centeno 80 g + 3 huevos duros</span></div><div class="ri"><span>Queso fresco 0% 150 g + frutos rojos</span></div><div class="pills"><span class="pill pp">P: 42g</span><span class="pill pc">C: 60g</span><span class="pill pf">G: 15g</span></div></div>
+      <div class="card"><div class="mh"><span class="mt">Comida</span><span class="mk">~920 kcal</span></div><div class="ri"><span>Ternera magra 180 g</span></div><div class="ri"><span>Pasta integral 200 g + ensalada variada</span></div><div class="pills"><span class="pill pp">P: 52g</span><span class="pill pc">C: 95g</span><span class="pill pf">G: 20g</span></div></div>
+      <div class="card"><div class="mh"><span class="mt">Cena</span><span class="mk">~860 kcal</span></div><div class="ri"><span>Merluza 250 g (horno)</span></div><div class="ri"><span>Arroz integral 150 g + judías verdes</span></div><div class="ri"><span>Requesón 100 g</span></div><div class="pills"><span class="pill pp">P: 62g</span><span class="pill pc">C: 55g</span><span class="pill pf">G: 25g</span></div></div>
+    </div>
+    <div id="m2" style="display:none">
+      <div class="card"><div class="mh"><span class="mt">Desayuno</span><span class="mk">~680 kcal</span></div><div class="ri"><span>Pan masa madre 80 g + 3 huevos + aguacate</span></div><div class="ri"><span>Zumo naranja natural 200 ml</span></div><div class="pills"><span class="pill pp">P: 35g</span><span class="pill pc">C: 65g</span><span class="pill pf">G: 25g</span></div></div>
+      <div class="card"><div class="mh"><span class="mt">Comida flexible</span><span class="mk">~950 kcal</span></div><div class="ri"><span>Proteína a elección 200 g</span><span class="rd">pollo, atún…</span></div><div class="ri"><span>Carbo a elección 200 g</span><span class="rd">arroz, pasta…</span></div><div class="ri"><span>Verduras 200 g + AOVE 10 ml</span></div><div class="pills"><span class="pill pp">P: 55g</span><span class="pill pc">C: 90g</span><span class="pill pf">G: 22g</span></div></div>
+      <div class="card"><div class="mh"><span class="mt">Cena</span><span class="mk">~770 kcal</span></div><div class="ri"><span>Tortilla 4 huevos + verduras</span></div><div class="ri"><span>Ensalada tomate + pepino + pan integral 50 g</span></div><div class="ri"><span>Yogur griego 0% 200 g</span></div><div class="pills"><span class="pill pp">P: 48g</span><span class="pill pc">C: 45g</span><span class="pill pf">G: 28g</span></div></div>
+    </div>
+    <p class="stitle">Suplementos</p>
+    <div class="sp"><div class="spt">✓ Creatina monohidrato</div><div class="spb">5 g al día, cualquier momento. El suplemento más respaldado por la ciencia. Seguro, barato y eficaz.</div></div>
+    <div class="sp"><div class="spt">Proteína whey (opcional)</div><div class="spb">Solo si algún día no llegas a 180 g de proteína con comida real.</div></div>
+    <div class="sp"><div class="spt">Lo que NO necesitas</div><div class="spb">Quemadores, BCAAs, pre-entrenos complejos. La dieta y el entreno son el 95%.</div></div>
+  </div>
+
+  <!-- REGISTRO -->
+  <div id="sec-reg" class="sec">
+    <p class="stitle">Registrar serie</p>
+    <div class="card">
+      <div class="fr"><label>Ejercicio</label><input type="text" id="rn" placeholder="Ej: Sentadilla"></div>
+      <div class="fr"><label>Peso (kg)</label><input type="number" id="rp" placeholder="80" min="0" step="0.5" inputmode="decimal"></div>
+      <div class="fr"><label>Repeticiones</label><input type="number" id="rr" placeholder="8" min="1" inputmode="numeric"></div>
+      <div class="fr"><label>Series</label><input type="number" id="rs" placeholder="4" min="1" inputmode="numeric"></div>
+      <button class="btn-add" id="btn-add">+ Añadir al registro</button>
+    </div>
+    <p class="stitle">Historial de hoy</p>
+    <div class="card" id="log-list"><div class="emp">Aún no has registrado ningún ejercicio hoy.</div></div>
+    <div id="log-sum" style="display:none">
+      <div class="g3">
+        <div class="mc"><div class="lb">Ejercicios</div><div class="vl" id="s-ej">0</div></div>
+        <div class="mc"><div class="lb">Series</div><div class="vl" id="s-se">0</div></div>
+        <div class="mc"><div class="lb">Volumen</div><div class="vl" id="s-vo" style="font-size:14px">0 kg</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTINA -->
+  <div id="sec-rut" class="sec">
+    <div class="card" style="margin-bottom:12px;font-size:13px;color:#555;line-height:1.6"><strong style="color:#1a1a1a">Push / Pull / Legs</strong> — fuerza e hipertrofia alternados. Sáb/Dom descanso activo.</div>
+    <div class="rdc"><div class="rdh"><span class="rdd">Lunes</span><span class="rdb">Empuje — Fuerza</span></div><div class="rds">Pectoral · Hombro · Tríceps</div><div class="rdx"><span class="en">Press banca con barra</span><span class="es">5×4–5 · 3 min</span></div><div class="rdx"><span class="en">Press militar con barra</span><span class="es">4×5–6 · 3 min</span></div><div class="rdx"><span class="en">Press inclinado mancuernas</span><span class="es">3×8 · 2 min</span></div><div class="rdx"><span class="en">Fondos en paralelas</span><span class="es">3×8–10 · 90s</span></div><div class="rdx"><span class="en">Extensiones tríceps polea</span><span class="es">3×12 · 60s</span></div></div>
+    <div class="rdc"><div class="rdh"><span class="rdd">Martes</span><span class="rdb">Tirón — Fuerza</span></div><div class="rds">Dorsal · Bíceps · Romboides</div><div class="rdx"><span class="en">Peso muerto convencional</span><span class="es">5×3–4 · 4 min</span></div><div class="rdx"><span class="en">Dominadas con lastre</span><span class="es">4×5–6 · 3 min</span></div><div class="rdx"><span class="en">Remo con barra (Pendlay)</span><span class="es">4×6 · 2 min</span></div><div class="rdx"><span class="en">Remo en polea baja</span><span class="es">3×10 · 90s</span></div><div class="rdx"><span class="en">Curl bíceps con barra</span><span class="es">3×10 · 60s</span></div></div>
+    <div class="rdc"><div class="rdh"><span class="rdd">Miércoles</span><span class="rdb">Pierna — Fuerza</span></div><div class="rds">Cuádriceps · Glúteo · Isquios</div><div class="rdx"><span class="en">Sentadilla con barra</span><span class="es">5×4–5 · 3 min</span></div><div class="rdx"><span class="en">Prensa de pierna</span><span class="es">4×6–8 · 2 min</span></div><div class="rdx"><span class="en">Peso muerto rumano</span><span class="es">4×8 · 2 min</span></div><div class="rdx"><span class="en">Zancadas con mancuernas</span><span class="es">3×10/pierna · 90s</span></div><div class="rdx"><span class="en">Elevación de talones</span><span class="es">4×15 · 60s</span></div></div>
+    <div class="rdc"><div class="rdh"><span class="rdd">Jueves</span><span class="rdb">Empuje — Hipertrofia</span></div><div class="rds">Pectoral · Hombro · Tríceps</div><div class="rdx"><span class="en">Press banca mancuernas</span><span class="es">4×10–12 · 90s</span></div><div class="rdx"><span class="en">Aperturas polea cruzada</span><span class="es">3×12–15 · 60s</span></div><div class="rdx"><span class="en">Press Arnold</span><span class="es">4×10–12 · 90s</span></div><div class="rdx"><span class="en">Elevaciones laterales</span><span class="es">4×12–15 · 60s</span></div><div class="rdx"><span class="en">Press francés barra Z</span><span class="es">3×12 · 60s</span></div><div class="rdx"><span class="en">Patada de tríceps mancuerna</span><span class="es">3×15 · 60s</span></div></div>
+    <div class="rdc"><div class="rdh"><span class="rdd">Viernes</span><span class="rdb">Tirón + Core — Hipertrofia</span></div><div class="rds">Dorsal · Bíceps · Deltoides post. · Core</div><div class="rdx"><span class="en">Dominadas agarre supino</span><span class="es">4×8–10 · 90s</span></div><div class="rdx"><span class="en">Remo unilateral mancuerna</span><span class="es">4×12/lado · 90s</span></div><div class="rdx"><span class="en">Pullover en polea alta</span><span class="es">3×12–15 · 60s</span></div><div class="rdx"><span class="en">Face pulls en polea</span><span class="es">4×15 · 60s</span></div><div class="rdx"><span class="en">Curl martillo mancuernas</span><span class="es">3×12 · 60s</span></div><div class="rdx"><span class="en">Plancha abdominal</span><span class="es">3×60s · 60s</span></div><div class="rdx"><span class="en">Rueda abdominal</span><span class="es">3×10 · 60s</span></div></div>
+    <div class="tip">Añade 2,5 kg o 1–2 reps cada semana en los ejercicios principales. Si no puedes, mantén el peso hasta lograrlo.</div>
+  </div>
+
+  <!-- EJERCICIOS -->
+  <div id="sec-ej" class="sec">
+    <div class="fb" id="fbrow"></div>
+    <div id="ex-list"></div>
+  </div>
+
+  <nav class="bottom-nav" id="bnav">
+    <button class="bnav-btn active" data-s="nut"><i class="ti ti-salad"></i>Nutrición</button>
+    <button class="bnav-btn" data-s="reg"><i class="ti ti-writing"></i>Registro</button>
+    <button class="bnav-btn" data-s="rut"><i class="ti ti-calendar-week"></i>Rutina</button>
+    <button class="bnav-btn" data-s="ej"><i class="ti ti-barbell"></i>Ejercicios</button>
+  </nav>
+</div>
+
+<script>
+var EX=[
+  {n:"Press banca con barra",m:"Pectoral, tríceps, deltoides ant.",g:"pecho",t:"f",s:"4–5×4–8 · 2–3 min",a:"Press banca mancuernas, Máquina Smith"},
+  {n:"Press inclinado con barra",m:"Pectoral superior",g:"pecho",t:"f",s:"4×6–10 · 2 min",a:"Press inclinado mancuernas, Cable"},
+  {n:"Press banca con mancuernas",m:"Pectoral, tríceps",g:"pecho",t:"h",s:"3–4×10–12 · 90s",a:"Press barra, Máquina pecho"},
+  {n:"Press inclinado mancuernas",m:"Pectoral superior",g:"pecho",t:"h",s:"3–4×8–12 · 90s",a:"Press inclinado barra, Cable inclinado"},
+  {n:"Aperturas mancuernas (plano)",m:"Pectoral, deltoides ant.",g:"pecho",t:"h",s:"3×12–15 · 60s",a:"Aperturas polea cruzada, Pec deck"},
+  {n:"Aperturas en polea cruzada",m:"Pectoral (estiramiento máximo)",g:"pecho",t:"h",s:"3–4×12–15 · 60s",a:"Aperturas mancuernas, Pec deck"},
+  {n:"Fondos en paralelas",m:"Pectoral inferior, tríceps",g:"pecho",t:"f",s:"3–4×8–12 · 90s",a:"Fondos máquina asistida, Press estrecho"},
+  {n:"Pullover con mancuerna",m:"Pectoral, dorsal, serrato",g:"pecho",t:"h",s:"3×12–15 · 60s",a:"Pullover polea alta, Pullover máquina"},
+  {n:"Press militar con barra",m:"Deltoides, tríceps, trapecio",g:"hombro",t:"f",s:"4–5×5–8 · 2–3 min",a:"Press mancuernas, Press Arnold"},
+  {n:"Press Arnold",m:"Deltoides (3 haces), tríceps",g:"hombro",t:"h",s:"4×10–12 · 90s",a:"Press militar, Press mancuernas"},
+  {n:"Elevaciones laterales mancuernas",m:"Deltoides medial",g:"hombro",t:"h",s:"4×12–15 · 60s",a:"Elevaciones polea baja, Máquina lateral"},
+  {n:"Elevaciones frontales mancuernas",m:"Deltoides anterior",g:"hombro",t:"h",s:"3×12 · 60s",a:"Elevaciones frontales barra, Cable frontal"},
+  {n:"Face pulls en polea",m:"Deltoides posterior, manguito rotador",g:"hombro",t:"h",s:"4×15 · 60s",a:"Pájaros mancuernas, Reverse pec deck"},
+  {n:"Pájaros mancuernas (inclinado)",m:"Deltoides posterior, romboides",g:"hombro",t:"h",s:"3–4×12–15 · 60s",a:"Face pulls, Reverse pec deck"},
+  {n:"Encogimientos barra (shrugs)",m:"Trapecio superior",g:"hombro",t:"h",s:"4×12–15 · 60s",a:"Shrugs mancuernas, Máquina Smith"},
+  {n:"Press francés barra Z",m:"Tríceps cabeza larga",g:"triceps",t:"h",s:"3–4×10–12 · 60–90s",a:"Press francés mancuernas, Extensiones polea"},
+  {n:"Extensiones tríceps polea alta",m:"Tríceps (3 haces)",g:"triceps",t:"h",s:"3–4×12–15 · 60s",a:"Press francés, Extensión unilateral"},
+  {n:"Patada de tríceps mancuerna",m:"Tríceps cabeza lateral",g:"triceps",t:"h",s:"3×12–15/lado · 60s",a:"Extensiones polea, Press francés"},
+  {n:"Extensión tríceps sobre cabeza",m:"Tríceps cabeza larga",g:"triceps",t:"h",s:"3×12 · 60s",a:"Extensión barra, Cable overhead"},
+  {n:"Peso muerto convencional",m:"Isquios, glúteo, lumbar, trapecio",g:"espalda",t:"f",s:"4–5×3–6 · 3–4 min",a:"Peso muerto sumo, Máquina Smith"},
+  {n:"Dominadas con lastre",m:"Dorsal, bíceps, romboides",g:"espalda",t:"f",s:"4–5×5–8 · 2–3 min",a:"Dominadas sin lastre, Jalón al pecho"},
+  {n:"Remo con barra (Pendlay)",m:"Dorsal, trapecio, bíceps",g:"espalda",t:"f",s:"4×5–8 · 2 min",a:"Remo supino, Remo máquina"},
+  {n:"Remo en polea baja",m:"Dorsal medio, romboides",g:"espalda",t:"h",s:"3–4×10–12 · 90s",a:"Remo máquina, Remo unilateral"},
+  {n:"Remo unilateral mancuerna",m:"Dorsal, bíceps (unilateral)",g:"espalda",t:"h",s:"4×10–12/lado · 90s",a:"Remo polea baja, Remo máquina"},
+  {n:"Jalón al pecho en polea",m:"Dorsal, bíceps, romboides",g:"espalda",t:"h",s:"4×10–12 · 90s",a:"Dominadas, Jalón agarre supino"},
+  {n:"Pullover en polea alta",m:"Dorsal, serrato, pectoral",g:"espalda",t:"h",s:"3×12–15 · 60s",a:"Pullover mancuerna, Straight-arm pulldown"},
+  {n:"Hiperextensiones banco romano",m:"Lumbar, glúteo, isquios",g:"espalda",t:"h",s:"3×12–15 · 60s",a:"Buenos días barra, Superman en suelo"},
+  {n:"Curl de bíceps con barra",m:"Bíceps braquial, braquial",g:"biceps",t:"h",s:"3–4×10–12 · 60–90s",a:"Curl barra Z, Curl mancuernas alterno"},
+  {n:"Curl martillo mancuernas",m:"Braquial, braquiorradial, bíceps",g:"biceps",t:"h",s:"3×12 · 60s",a:"Curl cuerda polea, Curl martillo cable"},
+  {n:"Curl concentrado mancuerna",m:"Bíceps (pico)",g:"biceps",t:"h",s:"3×12/lado · 60s",a:"Curl predicador, Curl polea baja"},
+  {n:"Curl predicador (EZ bar)",m:"Bíceps parte baja del recorrido",g:"biceps",t:"h",s:"3×12 · 60s",a:"Curl concentrado, Curl máquina"},
+  {n:"Curl en polea baja",m:"Bíceps braquial",g:"biceps",t:"h",s:"3×12–15 · 60s",a:"Curl barra, Curl mancuernas"},
+  {n:"Sentadilla con barra",m:"Cuádriceps, glúteo, core",g:"pierna",t:"f",s:"5×4–6 · 3–4 min",a:"Sentadilla goblet, Prensa, Hack squat"},
+  {n:"Peso muerto rumano",m:"Isquiotibiales, glúteo, lumbar",g:"pierna",t:"f",s:"4×8 · 2 min",a:"Peso muerto piernas rígidas, Curl femoral"},
+  {n:"Prensa de pierna",m:"Cuádriceps, glúteo",g:"pierna",t:"h",s:"4×8–12 · 2 min",a:"Hack squat, Sentadilla"},
+  {n:"Extensiones cuádriceps (máquina)",m:"Cuádriceps",g:"pierna",t:"h",s:"3–4×12–15 · 60s",a:"Sentadilla, Prensa"},
+  {n:"Curl femoral tumbado (máquina)",m:"Isquiotibiales",g:"pierna",t:"h",s:"3–4×12 · 60s",a:"Curl femoral sentado, Nordic curl"},
+  {n:"Zancadas con mancuernas",m:"Cuádriceps, glúteo",g:"pierna",t:"h",s:"3×10/pierna · 90s",a:"Sentadilla búlgara, Step-up cajón"},
+  {n:"Sentadilla búlgara (split squat)",m:"Cuádriceps, glúteo (unilateral)",g:"pierna",t:"f",s:"4×8–10/pierna · 90s",a:"Zancadas, Prensa unilateral"},
+  {n:"Hip thrust con barra",m:"Glúteo mayor",g:"pierna",t:"h",s:"4×10–12 · 90s",a:"Puente de glúteo, Patada glúteo polea"},
+  {n:"Elevación de talones de pie",m:"Gastrocnemio, sóleo",g:"pierna",t:"h",s:"4×15–20 · 60s",a:"Elevación sentado (sóleo), Prensa pantorrillas"},
+  {n:"Hack squat en máquina",m:"Cuádriceps, glúteo",g:"pierna",t:"f",s:"4×8–10 · 2 min",a:"Prensa de pierna, Sentadilla"},
+  {n:"Plancha abdominal",m:"Core, estabilizadores",g:"core",t:"h",s:"3×45–60s · 60s",a:"Plancha lateral, RKC plank"},
+  {n:"Rueda abdominal (ab wheel)",m:"Recto abdominal, oblicuos, dorsal",g:"core",t:"h",s:"3×8–12 · 60s",a:"Plancha, Dragon flag"},
+  {n:"Crunch en polea alta",m:"Recto abdominal",g:"core",t:"h",s:"3–4×15–20 · 60s",a:"Crunch en suelo, Crunch máquina"},
+  {n:"Elevación de piernas colgado",m:"Recto abdominal zona baja",g:"core",t:"h",s:"3×12–15 · 60s",a:"Elevación piernas suelo, Reverse crunch"},
+  {n:"Pallof press en polea",m:"Core anti-rotación, oblicuos",g:"core",t:"h",s:"3×12/lado · 60s",a:"Plancha lateral, Chop en polea"},
+  {n:"Rotaciones con cable (wood chop)",m:"Oblicuos, core",g:"core",t:"h",s:"3×12/lado · 60s",a:"Pallof press, Giro ruso con peso"},
+  {n:"Hiperextensiones (GHD)",m:"Lumbar, glúteo, isquios",g:"core",t:"h",s:"3×12–15 · 60s",a:"Banco romano, Superman en suelo"}
+];
+var GR=[{k:'todos',l:'Todos'},{k:'pecho',l:'Pecho'},{k:'hombro',l:'Hombro'},{k:'triceps',l:'Tríceps'},{k:'espalda',l:'Espalda'},{k:'biceps',l:'Bíceps'},{k:'pierna',l:'Pierna'},{k:'core',l:'Core'}];
+var fbrow=document.getElementById('fbrow');
+GR.forEach(function(g,i){var b=document.createElement('button');b.className='fbtn'+(i===0?' active':'');b.textContent=g.l;b.setAttribute('data-g',g.k);fbrow.appendChild(b);});
+function renderEx(f){var arr=f==='todos'?EX:EX.filter(function(e){return e.g===f;});document.getElementById('ex-list').innerHTML=arr.map(function(e){var bd=e.t==='f'?'<span class="ebg ebf">Compuesto</span>':'<span class="ebg ebi">Aislamiento</span>';return '<div class="exc"><div class="ext"><span class="exn">'+e.n+'</span>'+bd+'</div><div class="exm">'+e.m+'</div><div class="exs">'+e.s+'</div><div class="exa"><b>Alternativas:</b> '+e.a+'</div></div>';}).join('');}
+renderEx('todos');
+fbrow.addEventListener('click',function(e){var b=e.target.closest('[data-g]');if(!b)return;document.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('active')});b.classList.add('active');renderEx(b.getAttribute('data-g'));});
+document.getElementById('bnav').addEventListener('click',function(e){var b=e.target.closest('[data-s]');if(!b)return;document.querySelectorAll('.bnav-btn').forEach(function(x){x.classList.remove('active')});document.querySelectorAll('.sec').forEach(function(x){x.classList.remove('active')});b.classList.add('active');document.getElementById('sec-'+b.getAttribute('data-s')).classList.add('active');window.scrollTo(0,0);});
+document.getElementById('mdnav').addEventListener('click',function(e){var b=e.target.closest('[data-m]');if(!b)return;document.querySelectorAll('#mdnav .db').forEach(function(x){x.classList.remove('active')});b.classList.add('active');var i=b.getAttribute('data-m');['m0','m1','m2'].forEach(function(id,j){document.getElementById(id).style.display=String(j)===i?'block':'none';});});
+var logs=[];
+document.getElementById('btn-add').addEventListener('click',function(){var n=document.getElementById('rn').value.trim();var p=parseFloat(document.getElementById('rp').value)||0;var r=parseInt(document.getElementById('rr').value)||0;var s=parseInt(document.getElementById('rs').value)||0;if(!n||!r||!s){alert('Rellena ejercicio, repeticiones y series.');return;}logs.push({n:n,p:p,r:r,s:s});['rn','rp','rr','rs'].forEach(function(id){document.getElementById(id).value='';});renderLogs();});
+document.getElementById('log-list').addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(!b)return;logs.splice(parseInt(b.getAttribute('data-d')),1);renderLogs();});
+function renderLogs(){var el=document.getElementById('log-list');if(!logs.length){el.innerHTML='<div class="emp">Aún no has registrado ningún ejercicio hoy.</div>';document.getElementById('log-sum').style.display='none';return;}el.innerHTML=logs.map(function(l,i){var v=Math.round(l.p*l.r*l.s);return '<div class="lr"><div><div class="ln">'+l.n+'</div><div class="ld">'+l.s+'×'+l.r+' reps'+(l.p?' · '+l.p+' kg':'')+' · Vol: '+v+' kg</div></div><button class="dl" data-d="'+i+'">✕</button></div>';}).join('');var tv=0,ts=0;logs.forEach(function(l){tv+=Math.round(l.p*l.r*l.s);ts+=l.s;});document.getElementById('s-ej').textContent=logs.length;document.getElementById('s-se').textContent=ts;document.getElementById('s-vo').textContent=tv.toLocaleString()+' kg';document.getElementById('log-sum').style.display='block';}
+</script>
+</body>
+</html>
